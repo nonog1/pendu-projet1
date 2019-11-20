@@ -13,10 +13,7 @@ def choisirmot():                    #fonction qui permet de choisir un mot et d
         i=i+1
 
 
-#def veriflettre():
-    #saisie=input("saisir une lettre: ")
-    #saisie=(saisie.lower())
-    #print(saisie)
+
     
 saisi=input("saisir une lettre:")
 caractereMaj=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
@@ -27,8 +24,14 @@ else:
     print(saisi)
     
     
-    
-    
+caractereMin=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]  
     
 choisirmot()
+
+
+#ancien code. Ne pas faire attention
 #veriflettre()
+#def veriflettre():
+#    saisie=input("saisir une lettre: ")
+#    saisie=(saisie.lower())
+#    print(saisie)
