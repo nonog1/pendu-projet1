@@ -35,4 +35,3 @@ choisirmot()
 #    saisie=input("saisir une lettre: ")
 #    saisie=(saisie.lower())
 #    print(saisie)
-# 
