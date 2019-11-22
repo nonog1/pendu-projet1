@@ -19,7 +19,8 @@ saisi=input("saisir une lettre:")
 caractereMaj=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 verif=saisi in caractereMaj
 if verif==True:
-    print(saisi.lower())
+    saisi=(saisi.lower())
+    print(saisi)
 else:
     print(saisi)
     
