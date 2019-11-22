@@ -28,10 +28,3 @@ caractereMin=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q
     
 choisirmot()
 
-
-#ancien code. Ne pas faire attention
-#veriflettre()
-#def veriflettre():
-#    saisie=input("saisir une lettre: ")
-#    saisie=(saisie.lower())
-#    print(saisie)
