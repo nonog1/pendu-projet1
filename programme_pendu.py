@@ -1,14 +1,19 @@
+
 import random
 liste=["eau","bonjour","astronaute"]
 
 def choisirmot():                           #fonction qui permet de choisir un mot et d'afficher les underscores
     global mot
     global taille
+    global motlist
+    global motlist2
     mot=""
     mot=random.choice(liste)                #choisie un mot aléatoirement dans la liste
     print(mot)
     taille=len(mot)                         #compte le nombre de lettre dans le mot
     print(taille)
+    motlist=list(mot)                       #créé une liste avec chaque caractères du mot
+    motlist2=list(mot)
     i=0
     while i<taille:                         #boucle qui affiche les underscores
         print("_ ", end="")                 #le (, end="") permet de les écrires à la suite, ne pas revenir à la ligne
@@ -31,33 +36,31 @@ def verificationlettre():                   #vérifie si la saisie est une minus
         print("vous n'avez pas saisi une lettre, merci de recommencer")
         lettre=False
 
+
+
 def comparaisonlettre():                    #compare si la lettre saisie se trouve dans le mot
     global nb_vie
     global nb_trouve
-    global lettres_trouve
-    global lettres_fausse
     global lettre_dans_mot
-    if saisie in mot:
+    if saisie in motlist:                   #si la saisie est dans la liste qui contient chaque caractère du mot
         print("Vous avez trouvé une lettre !")
-        nb_trouve=nb_trouve+1
-        lettres_trouve+=[saisie]
-        print(lettres_trouve)
+        nb_trouve=nb_trouve+1               #Le nombre de lettres trouvés augmente
+        motlist.remove(saisie)              #On supprime le caractère saisie de la liste pour éviter d'avoir plusieurs fois la même lettre
+        print(motlist)
         lettre_dans_mot=True
+        
     else:
         print("cette lettre n'est pas présente dans le mot")
-        nb_vie=nb_vie-1
-        lettres_fausse+=[saisie]
-        print(lettres_fausse)
+        nb_vie=nb_vie-1                     #perdre une vie
         lettre_dans_mot=False
 
-#Fonction en developpement, inutilisable pour le moment
-#def affichagemot():
-#    global lettre_dans_mot
-#    global lettres_trouve
-#    if lettre_dans_mot==True:
-#        position_lettre=len(lettres_trouve)
-#        print(position_lettre)
-    
+
+def affichagemot():
+    global lettre_dans_mot
+    if lettre_dans_mot==True:
+        position_lettre=motlist2.index(saisie)
+        print(position_lettre)
+
     
 
 choisirmot()
@@ -70,7 +73,7 @@ while nb_trouve<taille:
     verificationlettre()
     if lettre==True:
         comparaisonlettre()
-        
+        affichagemot()
 
     
     
@@ -82,4 +85,3 @@ while nb_trouve<taille:
 #       |       /|\
 #       |       /\
 #    ___|____
-
