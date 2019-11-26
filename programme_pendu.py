@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 19 10:32:43 2019
+
+@author: Elève
+"""
 
 import random
 liste=["eau","bonjour","astronaute"]
@@ -9,9 +15,7 @@ def choisirmot():                           #fonction qui permet de choisir un m
     global motlist2
     mot=""
     mot=random.choice(liste)                #choisie un mot aléatoirement dans la liste
-    print(mot)
     taille=len(mot)                         #compte le nombre de lettre dans le mot
-    print(taille)
     motlist=list(mot)                       #créé une liste avec chaque caractères du mot
     motlist2=list(mot)
     i=0
@@ -46,7 +50,6 @@ def comparaisonlettre():                    #compare si la lettre saisie se trou
         print("Vous avez trouvé une lettre !")
         nb_trouve=nb_trouve+1               #Le nombre de lettres trouvés augmente
         motlist.remove(saisie)              #On supprime le caractère saisie de la liste pour éviter d'avoir plusieurs fois la même lettre
-        print(motlist)
         lettre_dans_mot=True
         
     else:
@@ -57,25 +60,87 @@ def comparaisonlettre():                    #compare si la lettre saisie se trou
 
 def affichagemot():
     global lettre_dans_mot
+    global tiret
     if lettre_dans_mot==True:
         position_lettre=motlist2.index(saisie)
-        print(position_lettre)
+        motlist2[position_lettre]="_"
+        tiret[position_lettre]=saisie
+        affichage_tiret=' '.join(tiret)
+        print(affichage_tiret)
 
-    
+def hommependu():
+    global nb_vie
+    if nb_vie==6:
+        print("_______")
+    if nb_vie==5:
+        print("   |    ")
+        print("   |    ")
+        print("   |    ")
+        print("   |    ")
+        print("___|____")
+    if nb_vie==4:
+        print("    ________")
+        print("   |    ")
+        print("   |    ")
+        print("   |    ")
+        print("   |    ")
+        print("___|____")
+    if nb_vie==3:
+        print("    ________  ")
+        print("   |        | ")
+        print("   |          ")
+        print("   |          ")
+        print("   |          ")
+        print("___|____      ")  
+    if nb_vie==2:
+        print("    ________  ")
+        print("   |        | ")
+        print("   |        O ")
+        print("   |          ")
+        print("   |          ")
+        print("___|____      ")  
+    if nb_vie==1:
+        print("    ________  ")
+        print("   |        | ")
+        print("   |        O ")
+        print("   |       /|\ ")
+        print("   |          ")
+        print("___|____      ")  
+    if nb_vie==0:
+        print("    ________  ")
+        print("   |        | ")
+        print("   |        O ")
+        print("   |       /|\ ")
+        print("   |       /\ ")
+        print("___|____      ")  
+        nb_vie=-1
+
+
 
 choisirmot()
 nb_trouve=0
 nb_vie=7    
 lettres_trouve=[]
 lettres_fausse=[]
+tiret=["_"]*taille
 while nb_trouve<taille:    
     saisie=input("saisir une lettre:")
-    verificationlettre()
-    if lettre==True:
-        comparaisonlettre()
-        affichagemot()
-
-    
+    comparaisonlettre()
+    while saisie in motlist2:
+        verificationlettre()
+        if lettre==True:
+            affichagemot()
+        else:
+            break
+    if lettre==False:
+        hommependu()
+    if nb_vie==-1:
+        print("Vous avez perdu, désolé")
+        break
+    if "_" in tiret:
+        print("")
+    else:
+        break
     
     
     
