@@ -58,15 +58,16 @@ def comparaisonlettre():                    #compare si la lettre saisie se trou
         lettre_dans_mot=False
 
 
-def affichagemot():
+def affichagemot():                         #permet d'afficher le mot lorsq'une lettre est trouvée
     global lettre_dans_mot
     global tiret
     if lettre_dans_mot==True:
-        position_lettre=motlist2.index(saisie)
-        motlist2[position_lettre]="_"
-        tiret[position_lettre]=saisie
-        affichage_tiret=' '.join(tiret)
-        print(affichage_tiret)
+        while saisie in motlist2:
+            position_lettre=motlist2.index(saisie)
+            motlist2[position_lettre]="_"
+            tiret[position_lettre]=saisie
+            affichage_tiret=' '.join(tiret)
+            print(affichage_tiret)
 
 def hommependu():
     global nb_vie
@@ -125,14 +126,16 @@ lettres_fausse=[]
 tiret=["_"]*taille
 while nb_trouve<taille:    
     saisie=input("saisir une lettre:")
-    comparaisonlettre()
-    while saisie in motlist2:
-        verificationlettre()
-        if lettre==True:
+    verificationlettre()
+    if lettre==True:
+        comparaisonlettre()
+        if lettre_dans_mot==True:
+            hommependu()
+            print("")
             affichagemot()
         else:
-            break
-    if lettre==False:
+            hommependu()
+    else:
         hommependu()
     if nb_vie==-1:
         print("Vous avez perdu, désolé")
@@ -140,6 +143,7 @@ while nb_trouve<taille:
     if "_" in tiret:
         print("")
     else:
+        print("Bravo, vous avez gagné")
         break
     
     
