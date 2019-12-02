@@ -6,7 +6,7 @@ Created on Tue Nov 19 10:32:43 2019
 """
 
 import random
-liste=["eau","bonjour","astronaute"]
+liste=["eau","bonjour","astronaute","hauteur","fraction","poumon","vote","nature","bagage","rapide","langue","dragon","jouet","fin","encore","centre","pendu","populaire","semaine","armure","livre","canard"]
 
 def choisirmot():                           #fonction qui permet de choisir un mot et d'afficher les underscores
     global mot
@@ -61,6 +61,7 @@ def comparaisonlettre():                    #compare si la lettre saisie se trou
 def affichagemot():                         #permet d'afficher le mot lorsq'une lettre est trouvée
     global lettre_dans_mot
     global tiret
+    global affichage_tiret
     if lettre_dans_mot==True:
         while saisie in motlist2:
             position_lettre=motlist2.index(saisie)
@@ -68,6 +69,14 @@ def affichagemot():                         #permet d'afficher le mot lorsq'une 
             tiret[position_lettre]=saisie
             affichage_tiret=' '.join(tiret)
             print(affichage_tiret)
+    else:
+        try:
+            print(affichage_tiret)
+        except:
+            i=0
+            while i<taille:
+                print("_ ", end="")                 
+                i=i+1
 
 def hommependu():
     global nb_vie
@@ -117,7 +126,10 @@ def hommependu():
         nb_vie=-1
 
 
-
+try :
+    del affichage_tiret
+except:
+    print("")
 choisirmot()
 nb_trouve=0
 nb_vie=7    
@@ -135,15 +147,19 @@ while nb_trouve<taille:
             affichagemot()
         else:
             hommependu()
+            print("")
+            affichagemot()
     else:
         hommependu()
     if nb_vie==-1:
         print("Vous avez perdu, désolé")
+        del affichage_tiret
         break
     if "_" in tiret:
         print("")
     else:
         print("Bravo, vous avez gagné")
+        del affichage_tiret
         break
     
     
