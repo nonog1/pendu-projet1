@@ -46,16 +46,20 @@ def comparaisonlettre():                    #compare si la lettre saisie se trou
     global nb_vie
     global nb_trouve
     global lettre_dans_mot
-    if saisie in motlist:                   #si la saisie est dans la liste qui contient chaque caractère du mot
-        print("Vous avez trouvé une lettre !")
-        nb_trouve=nb_trouve+1               #Le nombre de lettres trouvés augmente
-        motlist.remove(saisie)              #On supprime le caractère saisie de la liste pour éviter d'avoir plusieurs fois la même lettre
-        lettre_dans_mot=True
-        
-    else:
-        print("cette lettre n'est pas présente dans le mot")
-        nb_vie=nb_vie-1                     #perdre une vie
+    global lettre_deja_saisie
+    if saisie in lettre_deja_saisie:
+        print("vous avez déjà saisie cette lettre")
         lettre_dans_mot=False
+    else:
+        if saisie in motlist:                   #si la saisie est dans la liste qui contient chaque caractère du mot
+            print("Vous avez trouvé une lettre !")
+            nb_trouve=nb_trouve+1               #Le nombre de lettres trouvés augmente
+            motlist.remove(saisie)              #On supprime le caractère saisie de la liste pour éviter d'avoir plusieurs fois la même lettre
+            lettre_dans_mot=True    
+        else:
+            print("cette lettre n'est pas présente dans le mot")
+            nb_vie=nb_vie-1                     #perdre une vie
+            lettre_dans_mot=False
 
 
 def affichagemot():                         #permet d'afficher le mot lorsq'une lettre est trouvée
@@ -131,6 +135,7 @@ try :
 except:
     print("")
 choisirmot()
+lettre_deja_saisie=[]
 nb_trouve=0
 nb_vie=7    
 lettres_trouve=[]
@@ -141,6 +146,7 @@ while nb_trouve<taille:
     verificationlettre()
     if lettre==True:
         comparaisonlettre()
+        lettre_deja_saisie+=[saisie]
         if lettre_dans_mot==True:
             hommependu()
             print("")
@@ -151,15 +157,15 @@ while nb_trouve<taille:
             affichagemot()
     else:
         hommependu()
+        print("")
+        affichagemot()
     if nb_vie==-1:
         print("Vous avez perdu, désolé")
-        del affichage_tiret
         break
     if "_" in tiret:
         print("")
     else:
         print("Bravo, vous avez gagné")
-        del affichage_tiret
         break
     
     
