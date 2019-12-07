@@ -1,0 +1,45 @@
+from tkinter import *
+import random
+#Liste des mots possibles dans le jeu du pendu :
+liste=["eau","bonjour","astronaute","hauteur","fraction","poumon","vote","nature","bagage","rapide","langue","dragon","jouet","fin","encore","centre","pendu","populaire","semaine","armure","livre","canard"]
+
+
+def jouer():
+    fen=Toplevel(fenmenu)
+    fen.geometry("1000x1000")
+    titrejeu= Label(fen, text="- Partie en cours -", font=fonttitrep)
+    titrejeu.pack()   
+    
+
+
+#Les différentes polices d'écriture utiliser dans le programme :
+fonttitrep= "-size 32 -family {Arial}"
+fontmenub= "-size 13 -family {Arial}"
+
+
+
+#Fenetre du menu de lancement :
+fenmenu= Tk()
+fenmenu.title("Bienvenue - Pendu")
+fenmenu.geometry("500x500")
+textbienvenue= Label(fenmenu, text="- Le Jeu Du Pendu -")
+textbienvenue.configure(font=fonttitrep)
+textbienvenue.pack()
+espace1= Canvas(fenmenu, width=20, height=20)
+espace1.pack()
+boutonjouer= Button(fenmenu, text="JOUER !", activebackground="#0a7200", width=15, height=3, bg="#0fa700", font=fontmenub, command=jouer)
+boutonjouer.pack()
+espace2= Canvas(fenmenu, width=20, height=10)
+espace2.pack()
+boutonquitter= Button(fenmenu, text="QUITTER :(", activebackground="#ac0101", width=15, height=3, bg="#f60000", font=fontmenub, command=fenmenu.quit)
+boutonquitter.pack()
+espace3= Canvas(fenmenu, width=20, height=10)
+espace3.pack()
+pendumenu = PhotoImage(file="C:\\Users\\noahg\\Desktop\\pendu_tkinter\\pendu_menu_img.png", master=fenmenu)
+imagemenu= Canvas(fenmenu, width=200, height=200)
+imagemenu.create_image(0, 0, anchor=NW, image=pendumenu)
+imagemenu.pack()
+fenmenu.mainloop()
+
+
+
