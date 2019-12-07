@@ -135,6 +135,7 @@ try :
 except:
     print("")
 choisirmot()
+lettre_dans_mot=False
 lettre_deja_saisie=[]
 nb_trouve=0
 nb_vie=7    
