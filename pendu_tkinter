@@ -4,23 +4,61 @@ import random
 liste=["eau","bonjour","astronaute","hauteur","fraction","poumon","vote","nature","bagage","rapide","langue","dragon","jouet","fin","encore","centre","pendu","populaire","semaine","armure","livre","canard"]
 
 
-def jouer():
-    fen=Toplevel(fenmenu)
-    fen.geometry("1000x1000")
-    titrejeu= Label(fen, text="- Partie en cours -", font=fonttitrep)
-    titrejeu.pack()   
-    
-
-
 #Les différentes polices d'écriture utiliser dans le programme :
 fonttitrep= "-size 32 -family {Arial}"
 fontmenub= "-size 13 -family {Arial}"
+fontsaisie= "-size 16 -family {Arial}"
+
+
+
+def choisirmot():                           #fonction qui permet de choisir un mot et d'afficher les underscores
+    global mot
+    global taille
+    global motlist
+    global motlist2
+    mot=""
+    mot=random.choice(liste)                #choisie un mot aléatoirement dans la liste
+    taille=len(mot)                         #compte le nombre de lettre dans le mot
+    motlist=list(mot)                       #créé une liste avec chaque caractères du mot
+    motlist2=list(mot)
+
+
+tiret=["_"]*taille
+
+
+
+
+
+
+#Fenetre de jeu principale : (s'affiche quand le bouton "jouer" est cliqué, car ce bouton appel la fonction "jouer")
+def jouer():
+    choisirmot()
+    fen=Toplevel(fenmenu)
+    fen.geometry("1000x1000")
+    fen.title("Pendu - Partie En Cours")
+    titrejeu= Label(fen, text="- Partie en cours -", font=fonttitrep)
+    titrejeu.pack()
+    espace4= Canvas(fen, width=20, height=10)
+    espace4.pack()
+    textentre= Label(fen, text="saisir une lettre :", font=fontsaisie)
+    textentre.pack()
+    espace5= Canvas(fen, width=20, height=10)
+    espace5.pack()
+    entre= Entry(fen, font=fontsaisie, width=5)
+    entre.pack()
+    espace6= Canvas(fen, width=20, height=10)
+    espace6.pack()
+    valider= Button(fen, text="Valider", activebackground="#047f1c", width=5, height=1, bg="#1cb339", font=fontmenub)   ####
+    valider.pack()
+
+
+
 
 
 
 #Fenetre du menu de lancement :
 fenmenu= Tk()
-fenmenu.title("Bienvenue - Pendu")
+fenmenu.title("Menu principal - Pendu")
 fenmenu.geometry("500x500")
 textbienvenue= Label(fenmenu, text="- Le Jeu Du Pendu -")
 textbienvenue.configure(font=fonttitrep)
@@ -40,6 +78,4 @@ imagemenu= Canvas(fenmenu, width=200, height=200)
 imagemenu.create_image(0, 0, anchor=NW, image=pendumenu)
 imagemenu.pack()
 fenmenu.mainloop()
-
-
 
