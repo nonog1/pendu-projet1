@@ -89,7 +89,6 @@ def saisiev():          #s'execute lorsque l'utilisateur clique sur Valider
     saisie=entre.get()
     verificationlettre()
     if lettre==True:
-        print("ok")
         comparaisonlettre()
         lettre_deja_saisie+=[saisie]
         affichagemot()
