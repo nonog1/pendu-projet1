@@ -23,16 +23,106 @@ def choisirmot():                           #fonction qui permet de choisir un m
     motlist2=list(mot)
 
 
-tiret=["_"]*taille
+
+
+caractereMaj=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+caractereMin=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"] 
+ 
+def verificationlettre():                   #vérifie si la saisie est une minuscule
+    global lettre                           #permet d'utiliser la variable lettre hors de cette fonction
+    global saisie    
+    verif=saisie in caractereMaj            #si saisie est dans la liste caractereMaj
+    if verif==True:
+        saisie=(saisie.lower())             #convertir majuscule en minuscule
+    verif2= saisie in caractereMin
+    if verif2==True:                        #confirme que la convertion à eu lieu et que la saisie est bien une lettre et non un caractère
+        lettre=True
+    else:
+        lettre=False
+
+
+
+def comparaisonlettre():                ###    #compare si la lettre saisie se trouve dans le mot
+    global nb_vie
+    global nb_trouve
+    global lettre_dans_mot
+    global lettre_deja_saisie
+    global resultatt
+    if saisie in lettre_deja_saisie:
+        resultatt.set("Vous avez déjà saisie cette lettre")
+        lettre_dans_mot=False
+    else:
+        if saisie in motlist:                   #si la saisie est dans la liste qui contient chaque caractère du mot
+            resultatt.set("Vous avez trouvé une lettre")
+            nb_trouve=nb_trouve+1               #Le nombre de lettres trouvés augmente
+            motlist.remove(saisie)              #On supprime le caractère saisie de la liste pour éviter d'avoir plusieurs fois la même lettre
+            lettre_dans_mot=True    
+        else:
+            resultatt.set("Cette lettre n'est pas présente dans le mot")
+            nb_vie=nb_vie-1                     #perdre une vie
+            lettre_dans_mot=False
+
+
+def affichagemot():                         #permet d'afficher le mot lorsqu'une lettre est trouvée
+    global lettre_dans_mot
+    global tiret
+    global affichage_tiret
+    global mott
+    if lettre_dans_mot==True:
+        while saisie in motlist2:
+            position_lettre=motlist2.index(saisie)
+            motlist2[position_lettre]="_"
+            tiret[position_lettre]=saisie
+            affichage_tiret=' '.join(tiret)
+            mott.set(affichage_tiret)
 
 
 
 
+
+
+def saisiev():          #s'execute lorsque l'utilisateur clique sur Valider
+    global saisie
+    global lettre
+    global lettre_deja_saisie
+    global resultatt
+    saisie=entre.get()
+    verificationlettre()
+    if lettre==True:
+        print("ok")
+        comparaisonlettre()
+        lettre_deja_saisie+=[saisie]
+        affichagemot()
+    else:
+        resultatt.set("Merci de saisir une lettre")
+    
+
+def nouvellegame():
+    global lettre_dans_mot
+    global lettre_deja_saisie
+    global nb_trouve
+    global nb_vie
+    global lettres_trouve
+    global lettre_fausse
+    lettre_dans_mot=False
+    lettre_deja_saisie=[]
+    nb_trouve=0
+    nb_vie=7    
+    lettres_trouve=[]
+    lettres_fausse=[]
 
 
 #Fenetre de jeu principale : (s'affiche quand le bouton "jouer" est cliqué, car ce bouton appel la fonction "jouer")
 def jouer():
+    global entre
+    global taille
+    global affichage
+    global resultatt
+    global mott
+    global tiret
     choisirmot()
+    nouvellegame()
+    tiret=["_"]*taille
     fen=Toplevel(fenmenu)
     fen.geometry("1000x1000")
     fen.title("Pendu - Partie En Cours")
@@ -48,8 +138,16 @@ def jouer():
     entre.pack()
     espace6= Canvas(fen, width=20, height=10)
     espace6.pack()
-    valider= Button(fen, text="Valider", activebackground="#047f1c", width=5, height=1, bg="#1cb339", font=fontmenub)   ####
+    valider= Button(fen, text="Valider", activebackground="#047f1c", width=5, height=1, bg="#1cb339", font=fontmenub, command=saisiev) 
     valider.pack()
+    resultatt = StringVar()                           
+    resultatsaisie= Label(fen, textvariable=resultatt, font=fontsaisie)    
+    resultatt.set("- Aucune lettre saisie -")               
+    resultatsaisie.pack()
+    mott = StringVar()
+    lemot= Label(fen, textvariable=mott, font=fontsaisie)
+    mott.set(tiret)
+    lemot.pack()
 
 
 
@@ -78,4 +176,3 @@ imagemenu= Canvas(fenmenu, width=200, height=200)
 imagemenu.create_image(0, 0, anchor=NW, image=pendumenu)
 imagemenu.pack()
 fenmenu.mainloop()
-
