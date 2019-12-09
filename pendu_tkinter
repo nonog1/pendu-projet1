@@ -198,6 +198,10 @@ def jouer():
     mott.set(tiret)
     lemot.pack()
     lependu= Canvas(fen, width=400, height=400)
+    espace7= Canvas(fen, width=20, height=10)
+    espace7.pack()
+    bquitterjeu= Button(fen, text="Quitter la partie", activebackground="#ac0101", width=15, height=1, bg="#f60000", font=fontmenub, command=fen.destroy)
+    bquitterjeu.pack()
 
 
 
