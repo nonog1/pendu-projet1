@@ -42,7 +42,7 @@ def verificationlettre():                   #vérifie si la saisie est une minus
 
 
 
-def comparaisonlettre():                ###    #compare si la lettre saisie se trouve dans le mot
+def comparaisonlettre():                       #compare si la lettre saisie se trouve dans le mot
     global nb_vie
     global nb_trouve
     global lettre_dans_mot
@@ -80,18 +80,66 @@ def affichagemot():                         #permet d'afficher le mot lorsqu'une
 
 
 
+def hommependu():
+    global lependu
+    global pendu1img
+    global pendu2img
+    global pendu3img
+    global pendu4img
+    global pendu5img
+    global pendu6img
+    global pendu7img
+    global pendu8img
+    if nb_vie==6:
+        #lependu.itemconfigure(300, 300, image=pendu1img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu1img)
+        lependu.pack()
+    if nb_vie==5:
+        #lependu.itemconfigure(Image, image=pendu3img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu2img)
+        lependu.pack()
+    if nb_vie==4:
+        #lependu.itemconfigure(Image, image=pendu3img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu3img)
+        lependu.pack()
+    if nb_vie==3:
+        #lependu.itemconfigure(Image, image=pendu3img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu4img)
+        lependu.pack()
+    if nb_vie==2:
+        #lependu.itemconfigure(Image, image=pendu3img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu5img)
+        lependu.pack()
+    if nb_vie==1:
+        #lependu.itemconfigure(Image, image=pendu3img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu6img)
+        lependu.pack()
+    if nb_vie==0:
+        #lependu.itemconfigure(Image, image=pendu3img)
+        lependu.create_image(0, 0, anchor=NW, image=pendu7img)
+        lependu.pack()
+
+
+
 
 def saisiev():          #s'execute lorsque l'utilisateur clique sur Valider
     global saisie
     global lettre
     global lettre_deja_saisie
     global resultatt
+    global nb_vie
+    global tiret
     saisie=entre.get()
     verificationlettre()
     if lettre==True:
         comparaisonlettre()
         lettre_deja_saisie+=[saisie]
         affichagemot()
+        hommependu()
+        if nb_vie==0:
+            resultatt.set("Vous avez PERDU !!")
+        if not "_" in tiret:
+            resultatt.set("Vous avez GAGNE !! BRAVO !")
     else:
         resultatt.set("Merci de saisir une lettre")
     
@@ -119,6 +167,8 @@ def jouer():
     global resultatt
     global mott
     global tiret
+    global lependu
+    global pendu1img
     choisirmot()
     nouvellegame()
     tiret=["_"]*taille
@@ -147,6 +197,7 @@ def jouer():
     lemot= Label(fen, textvariable=mott, font=fontsaisie)
     mott.set(tiret)
     lemot.pack()
+    lependu= Canvas(fen, width=400, height=400)
 
 
 
@@ -166,12 +217,25 @@ boutonjouer= Button(fenmenu, text="JOUER !", activebackground="#0a7200", width=1
 boutonjouer.pack()
 espace2= Canvas(fenmenu, width=20, height=10)
 espace2.pack()
-boutonquitter= Button(fenmenu, text="QUITTER :(", activebackground="#ac0101", width=15, height=3, bg="#f60000", font=fontmenub, command=fenmenu.quit)
+boutonquitter= Button(fenmenu, text="QUITTER :(", activebackground="#ac0101", width=15, height=3, bg="#f60000", font=fontmenub, command=fenmenu.destroy)
 boutonquitter.pack()
 espace3= Canvas(fenmenu, width=20, height=10)
 espace3.pack()
-pendumenu = PhotoImage(file="C:\\Users\\noahg\\Desktop\\pendu_tkinter\\pendu_menu_img.png", master=fenmenu)
+pendu1img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu1.png")                #####
+pendu2img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu2.png")
+pendu3img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu3.png")
+pendu4img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu4.png")
+pendu5img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu5.png")
+pendu6img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu6.png")
+pendu7img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu7.png")
+pendu8img = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\lependu\\pendu8.png")
+pendumenu = PhotoImage(file="C:\\Users\\Elève\\Desktop\\pendu_tkinter\\pendu_menu_img.png", master=fenmenu)   ###
 imagemenu= Canvas(fenmenu, width=200, height=200)
 imagemenu.create_image(0, 0, anchor=NW, image=pendumenu)
 imagemenu.pack()
 fenmenu.mainloop()
+
+
+#C:\\Users\\Elève\\Desktop\\pendu_tkinter\\
+
+
