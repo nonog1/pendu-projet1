@@ -1,0 +1,95 @@
+body
+{
+    font-family: Arial, 'Times New Roman', Times, serif;
+    padding-left: 15%;
+    padding-right: 15%;
+    background-color: #363636;
+    color: white;
+}
+h2
+{
+    padding-left: 8%;
+    color : rgb(95, 95, 255);
+}
+.imgf
+{
+    float : left;
+}
+.downl
+{
+    color : red;
+    font-size: 1.5em;
+}
+a
+{
+    text-decoration: none;
+}
+#page
+{
+    display: flex;
+    flex-direction: column;
+}
+p{
+    text-align: justify;
+}
+.imgg
+{
+    padding-left: 8%;
+}
+#entete
+{
+    background-image: url("images/entete.png");
+    background-repeat:no-repeat;
+}
+footer
+{
+    background-color: #2b2a2a;
+}
+.bouton1
+{
+    padding-left: 8%;
+}
+footer a{
+    color: black;
+}
+.bouton2
+{
+    padding-left: 65%;
+}
+
+
+
+.navigation
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+}
+.navigation li 
+{
+    background: #069a0c;
+    color: rgb(209, 68, 68);
+    border: 1px solid #069a0c;
+    margin-right: 1px;
+    float: left;
+    width: 300px;
+}
+.navigation li a 
+{
+    display: block ;
+    background: #069a0c left top no-repeat ;
+    color: rgb(255, 255, 255) ;
+    line-height: 2em ;
+    padding: 4px 0 ;
+    text-align: center ;
+    text-decoration: none;
+}  
+.navigation li a:hover, .navigation li a:focus, .navigation li a:active 
+{
+    background: #008206 left top no-repeat ;
+}
+
+
+
