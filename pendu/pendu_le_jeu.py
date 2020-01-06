@@ -215,7 +215,7 @@ def jouer():
     espace7= Canvas(fen, width=20, height=10)
     espace7.pack()
     fen.bind("<Return>", toucheentre)           #lorsque la touche entré est pressé
-    dejasaisi= Label(fen, text="Les lettres déjà saisi : ")
+    dejasaisi= Label(fen, text="Les lettres déjà saisies : ")
     dejasaisi.pack()
     lettreds= StringVar()
     afflettreds= Label(fen, textvariable=lettreds)
