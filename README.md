@@ -14,3 +14,23 @@ Pour plus d'informations, notre site Web : (bientot disponible)
 
 Contact : noahg250602@gmail.com
 
+GitHub :  https://github.com/nonog1/pendu-projet1
+
+
+
+
+English :
+
+Website: (Available soon)
+
+License: https://creativecommons.org/licenses/by-nc/3.0/fr/
+This work is made available under the terms of the Creative Commons Attribution License - No Commercial Use 3.0 France.
+
+By nonog1 & Ghoulterm (nickname GitHub)
+
+To launch the game: launch "pendu_le_jeu.py" with python.
+For more information, our website: (coming soon)
+
+Contact: noahg250602@gmail.com
+
+GitHub: https://github.com/nonog1/pendu-projet1
