@@ -23,6 +23,7 @@ h2
 a
 {
     text-decoration: none;
+    color: blue;
 }
 #page
 {
@@ -56,8 +57,22 @@ footer a{
 {
     padding-left: 65%;
 }
-
-
+html
+{
+    scroll-behavior: smooth;
+}
+#readme
+{
+    background-color: white;
+    width: 75%;
+    height: 50%;
+}
+#fleche
+{
+    padding-left: 45%;
+    width: 10%;
+    height: 20%;
+}
 
 .navigation
 {
